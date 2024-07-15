@@ -2,8 +2,8 @@ import br.com.dio.desafio.dominio.Bootcamp;
 import br.com.dio.desafio.dominio.Curso;
 import br.com.dio.desafio.dominio.Dev;
 import br.com.dio.desafio.dominio.Mentoria;
-
 import java.time.LocalDate;
+import java.util.Scanner;
 
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
@@ -34,25 +34,58 @@ public class Main {
         Dev devItalo = new Dev();
         devItalo.setNome("Italo");
         devItalo.inscreverBootcamp(bootcamp);
-        System.out.println("Italo Conteudos Intcritos:"+ devItalo.getConteudosInscritos());
-        System.out.println("Progressao realizada!!");
-        devItalo.progredir();
-        System.out.println("Progressao realizada!!");
-        devItalo.progredir();
-        System.out.println("Italo Conteudos Intcritos:"+ devItalo.getConteudosInscritos());
-        System.out.println("Italo Conteudos Concluidos:"+ devItalo.getConteudosConcluidos());
-        System.out.println("XP: "+ devItalo.calcularXp());
 
-        System.out.println("----------");
+        boolean continuar = true;
+        Scanner scan = new Scanner(System.in);
 
-        Dev devMaria = new Dev();
-        devMaria.setNome("Maria");
-        devMaria.inscreverBootcamp(bootcamp);
-        System.out.println("Progressao realizada!!");
-        devMaria.progredir();
-        System.out.println("Maria Conteudos Intcritos:"+ devMaria.getConteudosInscritos());
-        System.out.println("Maria Conteudos Concluidos:"+ devMaria.getConteudosConcluidos());
-        System.out.println("XP: "+ devMaria.calcularXp());
+        while (continuar){
+            System.out.println("=== Bootcamp Java Developer ===");
+            System.out.println("Bem vindo Italo");
+            System.out.println("Selecione uma opção abaixo");
+            System.out.println("1. Mostrar lista de atividades pendentes");
+            System.out.println("2. Mostrar lista de atividades concluidas");
+            System.out.println("3. Concluir a proxima atividade");
+            System.out.println("4. Mostrar a quantidade de XP total");
+            System.out.println("0. Encerrar");
+            int resposta = scan.nextInt();
 
+            switch (resposta){
+                case 1:
+                    System.out.println("Conteudos Pendentes: "+devItalo.getConteudosInscritos());
+                    System.out.println("Aperte enter para prosseguir");
+                    scan.nextLine();
+                    scan.nextLine();
+                    break;
+                case 2:
+                    System.out.println("Conteudos Concluidos: "+devItalo.getConteudosConcluidos());
+                    System.out.println("Aperte enter para prosseguir");
+                    scan.nextLine();
+                    scan.nextLine();
+                    break;
+                case 3:
+                    devItalo.progredir();
+                    System.out.println("Progressao Realizada!!");
+                    System.out.println("Aperte enter para prosseguir");
+                    scan.nextLine();
+                    scan.nextLine();
+                    break;
+                case 4:
+                    System.out.println("XP= "+devItalo.calcularXp());
+                    System.out.println("Aperte enter para prosseguir");
+                    scan.nextLine();
+                    scan.nextLine();
+                    break;
+                case 0:
+                    continuar = false;
+                    break;
+                default:
+                    System.out.println("ERRO: Insira uma opção valida!!");
+                    System.out.println("Aperte enter para prosseguir");
+                    scan.nextLine();
+                    scan.nextLine();
+                    break;
+            }
+        }
+        scan.close();
     }
 }
